@@ -45,24 +45,6 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-
-        <!--
-        Provided dependencies.
-        JAXB is needed when running on Java5. In this environment these dependencies have to be added (unless
-        xml configuration is explicitly disabled via Configuration.ignoreXmlConfiguration)
-        On Java6 jaxb is part of the runtime environment                                                                                                           
-        -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!--
         Optional dependencies
         -->
@@ -70,31 +52,6 @@
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!--
-        Test dependencies
-        -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <scope>test</scope>
-            <classifier>jdk15</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.easymock</groupId>
-          <artifactId>easymock</artifactId>
-          <scope>test</scope>
-        </dependency>        
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -246,71 +203,6 @@
                     <bottom>
                         <![CDATA[Copyright &copy; ${inceptionYear}-{currentYear} <a href="http://redhat.com">Red Hat Middleware, LLC.</a>  All Rights Reserved]]></bottom>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jboss.maven.plugins</groupId>
-                <artifactId>maven-jdocbook-plugin</artifactId>
-                <extensions>true</extensions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.hibernate</groupId>
-                        <artifactId>hibernate-jdocbook-style</artifactId>
-                        <version>2.0.1</version>
-                        <type>jdocbook-style</type>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <sourceDocumentName>master.xml</sourceDocumentName>
-                    <sourceDirectory>${basedir}/src/main/docbook</sourceDirectory>
-                    <masterTranslation>en-US</masterTranslation>
-                    <imageResource>
-                        <directory>${basedir}/src/main/docbook/en-US/images</directory>
-                    </imageResource>
-                    <formats>
-                        <format>
-                            <formatName>pdf</formatName>
-                            <stylesheetResource>classpath:/xslt/org/hibernate/jdocbook/xslt/pdf.xsl</stylesheetResource>
-                            <finalName>hibernate_validator_reference.pdf</finalName>
-                        </format>
-                        <format>
-                            <formatName>html_single</formatName>
-                            <stylesheetResource>classpath:/xslt/org/hibernate/jdocbook/xslt/xhtml-single.xsl
-                            </stylesheetResource>
-                            <finalName>index.html</finalName>
-                        </format>
-                        <format>
-                            <formatName>html</formatName>
-                            <stylesheetResource>classpath:/xslt/org/hibernate/jdocbook/xslt/xhtml.xsl
-                            </stylesheetResource>
-                            <finalName>index.html</finalName>
-                        </format>
-                    </formats>
-                    <options>
-                        <xincludeSupported>true</xincludeSupported>
-                        <xmlTransformerType>saxon</xmlTransformerType>
-                        <!-- needed for uri-resolvers; can be ommitted if using 'current' uri scheme -->
-                        <!--     could also locate the docbook dependency and inspect its version... -->
-                        <docbookVersion>1.72.0</docbookVersion>
-                        <localeSeparator>-</localeSeparator>
-                    </options>
-                    <profiling>
-                        <enabled>true</enabled>
-                    </profiling>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-doc</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>resources</goal>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jboss.maven.plugins</groupId>
-                <artifactId>maven-jdocbook-style-plugin</artifactId>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
