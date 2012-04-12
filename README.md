@@ -2,6 +2,7 @@
 
 *Version: 4.3.0.Beta1, 04.04.2011*
 
+[![Build Status](https://secure.travis-ci.org/stliu/hibernate-validator.png?branch=master)](http://travis-ci.org/stliu/hibernate-validator)
 
 ## What is it?
 
